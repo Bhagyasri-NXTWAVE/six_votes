@@ -1,0 +1,79 @@
+{
+  "config": {
+    "hidden": 128,
+    "n_aux": 3,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "noise_profile": "iso-gauss-64"
+  },
+  "per_seed": [
+    {
+      "seed": 0,
+      "untrained_acc": 0.11083123425692695,
+      "teacher_acc": 0.9622166246851386,
+      "student_same_init_acc": 0.8916876574307305,
+      "student_diff_init_acc": 0.1385390428211587
+    },
+    {
+      "seed": 1,
+      "untrained_acc": 0.06801007556675064,
+      "teacher_acc": 0.9798488664987406,
+      "student_same_init_acc": 0.9370277078085643,
+      "student_diff_init_acc": 0.09319899244332494
+    },
+    {
+      "seed": 2,
+      "untrained_acc": 0.10075566750629723,
+      "teacher_acc": 0.9773299748110831,
+      "student_same_init_acc": 0.9571788413098237,
+      "student_diff_init_acc": 0.037783375314861464
+    },
+    {
+      "seed": 3,
+      "untrained_acc": 0.08312342569269521,
+      "teacher_acc": 0.9748110831234257,
+      "student_same_init_acc": 0.9093198992443325,
+      "student_diff_init_acc": 0.11335012594458438
+    },
+    {
+      "seed": 4,
+      "untrained_acc": 0.04030226700251889,
+      "teacher_acc": 0.9697732997481109,
+      "student_same_init_acc": 0.9345088161209067,
+      "student_diff_init_acc": 0.12846347607052896
+    }
+  ],
+  "mean": {
+    "untrained_acc": 0.08060453400503778,
+    "teacher_acc": 0.9727959697732999,
+    "student_same_init_acc": 0.9259445843828715,
+    "student_diff_init_acc": 0.10226700251889169
+  },
+  "own_experiment": {
+    "question": "Does widening the auxiliary output channel from 1 to 10 logits increase how much digit-classification accuracy transfers through pure noise?",
+    "hypothesis": "More auxiliary outputs expose richer linear projections of the teacher's hidden representations, increasing student accuracy up to a saturation point.",
+    "conditions": [
+      {
+        "label": "1 auxiliary output",
+        "value": 1.0,
+        "student_acc_mean": 0.8599496221662468
+      },
+      {
+        "label": "3 auxiliary outputs (baseline)",
+        "value": 3.0,
+        "student_acc_mean": 0.9259445843828715
+      },
+      {
+        "label": "10 auxiliary outputs",
+        "value": 10.0,
+        "student_acc_mean": 0.9284634760705289
+      }
+    ],
+    "conclusion": "Even a single auxiliary output transfers 0.860 test accuracy on pure noise, rising to 0.926 with 3 outputs and plateauing at 0.928 with 10 outputs. Shared initialization leaks task structure even through a minimal side channel."
+  }
+}
